@@ -7,7 +7,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.google.guava:guava:22.0'
-        classpath 'com.android.tools.build:gradle:3.1.0'
+        classpath 'com.android.tools.build:gradle:3.1.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -19,4 +19,24 @@ allprojects {
         jcenter()
         google()
     }
-}
+
+    task testEntireProject {
+        dependsOn 'launchServer'
+        dependsOn 'runAsyncTest'
+        dependsOn 'shutDownServer'
+    }
+
+    task launchServer (dependsOn: ":backend:appengineRun") {
+        dependsOn ':backend:appengineRun'
+    }
+
+        task runAsyncTest {
+            dependsOn ':app:connectedAndroidTest'
+            mustRunAfter "launchServer"
+        }
+
+        task shutDownServer {
+            dependsOn ':backend:appengineStop'
+            mustRunAfter "runAsyncTest"
+        }
+    }
