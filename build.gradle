@@ -7,7 +7,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.google.guava:guava:22.0'
-        classpath 'com.android.tools.build:gradle:3.1.1'
+        classpath 'com.android.tools.build:gradle:3.1.2'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -20,23 +20,28 @@ allprojects {
         google()
     }
 
+    // optional gradle task
+    // Not sure if this was done correctly. Please give me feedback on this.
     task testEntireProject {
         dependsOn 'launchServer'
         dependsOn 'runAsyncTest'
         dependsOn 'shutDownServer'
     }
 
-    task launchServer (dependsOn: ":backend:appengineRun") {
-        dependsOn ':backend:appengineRun'
+
+    task launchServer(type: GradleBuild) {
+        dependsOn ':backend:appengineStart'
     }
 
-        task runAsyncTest {
-            dependsOn ':app:connectedAndroidTest'
-            mustRunAfter "launchServer"
-        }
-
-        task shutDownServer {
-            dependsOn ':backend:appengineStop'
-            mustRunAfter "runAsyncTest"
-        }
+    // needs emulator up and running to run successfully
+    task runAsyncTest {
+        dependsOn ':app:connectedAndroidTest'
+        mustRunAfter "launchServer"
     }
+
+
+    task shutDownServer {
+        dependsOn ':backend:appengineStop'
+        mustRunAfter "runAsyncTest"
+    }
+}

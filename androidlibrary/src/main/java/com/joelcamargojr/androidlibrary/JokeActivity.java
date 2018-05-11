@@ -15,7 +15,7 @@ public class JokeActivity extends AppCompatActivity {
         TextView jokeTv = (TextView) findViewById(R.id.jokeTv);
 
         Intent receivedIntent = getIntent();
-        String jokeString = receivedIntent.getStringExtra("jokeKey");
+        String jokeString = receivedIntent.getStringExtra(getString(R.string.jokeKey));
 
         if (jokeString != null) {
             jokeTv.setText(jokeString);
