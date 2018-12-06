@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 
+@SuppressWarnings({"ALL", "CanBeFinal", "WeakerAccess"})
 public class MainActivity extends AppCompatActivity {
 
     Context mContext = this;

@@ -1,6 +1,5 @@
 package com.udacity.gradle.builditbigger;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 
@@ -14,10 +13,15 @@ import java.io.IOException;
 
 // This is a version of the asyncTask that doesnt overide onPostExecute, so it'll work with
 // testing and returns the same String result
+@SuppressWarnings("ALL")
 public class EndpointsAsyncTaskTESTING extends AsyncTask<Context, Void, String> {
     private MyApi myApiService = null;
-    @SuppressLint("StaticFieldLeak")
-    private Context context;
+// --Commented out by Inspection START (5/24/18, 2:59 PM):
+//    @SuppressLint("StaticFieldLeak")
+//    private Context context;
+// --Commented out by Inspection STOP (5/24/18, 2:59 PM)
+
+    Context context;
 
     @SafeVarargs
     @Override
@@ -32,7 +36,7 @@ public class EndpointsAsyncTaskTESTING extends AsyncTask<Context, Void, String> 
                     .setApplicationName("FinalProject")
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
-                        public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
+                        public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) {
                             abstractGoogleClientRequest.setDisableGZipContent(true);
                         }
                     });

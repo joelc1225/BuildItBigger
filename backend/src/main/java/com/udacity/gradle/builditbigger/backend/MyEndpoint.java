@@ -13,8 +13,7 @@ import javax.inject.Named;
         version = "v1",
         namespace = @ApiNamespace(
                 ownerDomain = "backend.builditbigger.gradle.udacity.com",
-                ownerName = "backend.builditbigger.gradle.udacity.com",
-                packagePath = ""
+                ownerName = "backend.builditbigger.gradle.udacity.com"
         )
 )
 public class MyEndpoint {
@@ -28,6 +27,7 @@ public class MyEndpoint {
         return response;
     }
 
+    // ApiMethod i created to use with jokes
     @ApiMethod(name = "getJokeFromEndpointName")
     public MyBean getJokeFromEndpoint() {
         MyBean response = new MyBean();

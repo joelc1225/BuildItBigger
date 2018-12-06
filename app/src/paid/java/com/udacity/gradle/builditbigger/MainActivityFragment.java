@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 /**
  * A placeholder fragment containing a simple view.
  */
+@SuppressWarnings("NullableProblems")
 public class MainActivityFragment extends Fragment {
 
     public MainActivityFragment() {
